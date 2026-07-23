@@ -115,6 +115,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
+.app__card-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
 .app__card-timer {
     color: var(--color-secondary);
     text-align: center;
@@ -141,6 +146,13 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
+.app__card-secondary-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.6rem;
+}
+
 .app__card-primary-button {
     padding: 0.8rem;
     width: 12rem;
@@ -156,6 +168,25 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.app__card-secondary-button {
+    padding: 0.8rem 1.6rem;
+    color: var(--color-secondary);
+    border: 0.2rem solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    outline: inherit;
+    border-radius: 3.2rem;
+    background: transparent;
+    font-family: Montserrat;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.app__card-secondary-button:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .app__footer {
@@ -225,6 +256,11 @@ h1, h2, h3, h4, h5, h6 {
 .toggle-checkbox {
     position: absolute;
     visibility: hidden;
+}
+
+.toggle-checkbox:disabled + .toggle-switch {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
 /* fim - toggle */
