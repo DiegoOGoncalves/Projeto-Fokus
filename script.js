@@ -9,6 +9,7 @@ const musicaFocoInput = document.querySelector('#alternar-musica');
 const iniciarOuPausarBt = document.querySelector('#start-pause span');
 const imagemBtComecar = document.querySelector('.app__card-primary-butto-icon');
 const tempoNaTela = document.querySelector('#timer');
+const statusControle = document.querySelector('#status-controle');
 const botaoMusica = document.querySelector('.toggle-checkbox');
 const resetBt = document.querySelector('#reset');
 
@@ -26,6 +27,7 @@ const temposPorContexto = {
 let contextoAtual = 'foco';
 let tempoDecorridoEmSegundos = temposPorContexto[contextoAtual];
 let intervaloId = null;
+let controlesBloqueados = false;
 
 imagemBtComecar.setAttribute('src', './imagens/play_arrow.png');
 musica.loop = true;
@@ -33,10 +35,24 @@ musica.loop = true;
 function atualizarEstadosDeInteracao() {
   const estaRodando = intervaloId !== null;
 
-  focoBt.disabled = estaRodando;
-  curtoBt.disabled = estaRodando;
-  longoBt.disabled = estaRodando;
-  botaoMusica.disabled = estaRodando;
+  focoBt.disabled = controlesBloqueados;
+  curtoBt.disabled = controlesBloqueados;
+  longoBt.disabled = controlesBloqueados;
+  botaoMusica.disabled = controlesBloqueados;
+
+  if (estaRodando) {
+    statusControle.textContent = 'Timer ativo: controles bloqueados';
+  } else if (controlesBloqueados) {
+    statusControle.textContent = 'Timer pausado: reinicie para trocar o tempo';
+  } else {
+    statusControle.textContent = 'Pronto para começar';
+  }
+
+  statusControle.classList.toggle('is-running', estaRodando);
+  statusControle.classList.toggle(
+    'is-paused',
+    !estaRodando && controlesBloqueados,
+  );
 }
 
 function atualizarBotoesAtivos(contexto) {
@@ -54,6 +70,7 @@ function pararTimer(textoBotao) {
 }
 
 function reiniciarTimer() {
+  controlesBloqueados = false;
   pararTimer('Começar');
 }
 
@@ -72,7 +89,7 @@ musicaFocoInput.addEventListener('change', () => {
 
 // alterando imagem e contexto do app ao clicar nos botões
 focoBt.addEventListener('click', () => {
-  if (intervaloId) return;
+  if (controlesBloqueados) return;
 
   contextoAtual = 'foco';
   tempoDecorridoEmSegundos = temposPorContexto[contextoAtual];
@@ -81,7 +98,7 @@ focoBt.addEventListener('click', () => {
 });
 
 curtoBt.addEventListener('click', () => {
-  if (intervaloId) return;
+  if (controlesBloqueados) return;
 
   contextoAtual = 'descanso-curto';
   tempoDecorridoEmSegundos = temposPorContexto[contextoAtual];
@@ -90,7 +107,7 @@ curtoBt.addEventListener('click', () => {
 });
 
 longoBt.addEventListener('click', () => {
-  if (intervaloId) return;
+  if (controlesBloqueados) return;
 
   contextoAtual = 'descanso-longo';
   tempoDecorridoEmSegundos = temposPorContexto[contextoAtual];
@@ -150,6 +167,7 @@ function iniciarOuPausar() {
     pararTimer('Retomar');
     return;
   }
+  controlesBloqueados = true;
   if (!musica.paused) {
     pararMusica();
   }
