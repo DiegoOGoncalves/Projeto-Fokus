@@ -4,6 +4,17 @@ const curtoBt = document.querySelector('.app__card-button--curto');
 const longoBt = document.querySelector('.app__card-button--longo');
 const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title');
+const musicaFocoInput = document.querySelector('#alternar-musica');
+const musica = new Audio('./sons/luna-rise-part-one.mp3');
+musica.loop = true;
+// adicionando evento de click no input para tocar ou pausar a música
+musicaFocoInput.addEventListener('change', () => {
+  if (musica.paused) {
+    musica.play();
+  } else {
+    musica.pause();
+  }
+});
 
 // alterando imagem e contexto do app ao clicar nos botões
 focoBt.addEventListener('click', () => {
