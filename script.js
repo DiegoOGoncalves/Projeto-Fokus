@@ -4,8 +4,21 @@ const curtoBt = document.querySelector('.app__card-button--curto');
 const longoBt = document.querySelector('.app__card-button--longo');
 const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title');
+const startPauseBt = document.querySelector('#start-pause');
 const musicaFocoInput = document.querySelector('#alternar-musica');
+const iniciarOuPausarBt = document.querySelector('#start-pause span');
+const imagemBtComecar = document.querySelector('.app__card-primary-butto-icon');
+const tempoNaTela = document.querySelector('#timer');
+
 const musica = new Audio('./sons/luna-rise-part-one.mp3');
+const audioPlay = new Audio('./sons/play.wav');
+const audioPause = new Audio('./sons/pause.mp3');
+const audioTimeFinish = new Audio('./sons/beep.mp3');
+
+let tempoDecorridoEmSegundos = 1500; // 25 minutos
+let intervaloId = null;
+
+imagemBtComecar.setAttribute('src', './imagens/play_arrow.png');
 musica.loop = true;
 // adicionando evento de click no input para tocar ou pausar a música
 musicaFocoInput.addEventListener('change', () => {
@@ -18,6 +31,7 @@ musicaFocoInput.addEventListener('change', () => {
 
 // alterando imagem e contexto do app ao clicar nos botões
 focoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 1500; // 25 minutos
   alteraContexto('foco');
   focoBt.classList.add('active');
   curtoBt.classList.remove('active');
@@ -25,6 +39,7 @@ focoBt.addEventListener('click', () => {
 });
 
 curtoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 300; // 5 minutos
   alteraContexto('descanso-curto');
   focoBt.classList.remove('active');
   curtoBt.classList.add('active');
@@ -32,6 +47,7 @@ curtoBt.addEventListener('click', () => {
 });
 
 longoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 900; // 15 minutos
   alteraContexto('descanso-longo');
   focoBt.classList.remove('active');
   curtoBt.classList.remove('active');
@@ -40,6 +56,7 @@ longoBt.addEventListener('click', () => {
 //alterando os textos da página e a imagem de acordo com o contexto via função
 
 function alteraContexto(contexto) {
+  atualizarTempoNaTela();
   html.setAttribute('data-contexto', contexto);
   banner.setAttribute('src', `./imagens/${contexto}.png`);
   switch (contexto) {
@@ -61,3 +78,45 @@ function alteraContexto(contexto) {
       break;
   }
 }
+
+const contagemRegressiva = () => {
+  if (tempoDecorridoEmSegundos <= 0) {
+    audioTimeFinish.play();
+    alert('Tempo Finalizado!');
+    zerar();
+    return;
+  }
+  tempoDecorridoEmSegundos--;
+  atualizarTempoNaTela();
+};
+
+startPauseBt.addEventListener('click', iniciarOuPausar);
+
+function iniciarOuPausar() {
+  if (intervaloId) {
+    audioPause.play();
+    zerar();
+    return;
+  }
+  audioPlay.play();
+  intervaloId = setInterval(contagemRegressiva, 1000);
+  iniciarOuPausarBt.textContent = 'Pausar';
+  imagemBtComecar.setAttribute('src', './imagens/pause.png');
+}
+function zerar() {
+  clearInterval(intervaloId);
+  iniciarOuPausarBt.textContent = 'Retomar';
+  imagemBtComecar.setAttribute('src', './imagens/play_arrow.png');
+  intervaloId = null;
+}
+
+function atualizarTempoNaTela() {
+  const tempo = new Date(tempoDecorridoEmSegundos * 1000);
+  const tempoFormatado = tempo.toLocaleTimeString('pt-BR', {
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  tempoNaTela.innerHTML = `${tempoFormatado}`;
+}
+
+atualizarTempoNaTela();
