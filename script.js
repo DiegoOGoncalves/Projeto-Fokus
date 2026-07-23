@@ -15,7 +15,7 @@ const audioPlay = new Audio('./sons/play.wav');
 const audioPause = new Audio('./sons/pause.mp3');
 const audioTimeFinish = new Audio('./sons/beep.mp3');
 
-let tempoDecorridoEmSegundos = 5;
+let tempoDecorridoEmSegundos = 1500; // 25 minutos
 let intervaloId = null;
 
 imagemBtComecar.setAttribute('src', './imagens/play_arrow.png');
@@ -31,6 +31,7 @@ musicaFocoInput.addEventListener('change', () => {
 
 // alterando imagem e contexto do app ao clicar nos botões
 focoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 1500; // 25 minutos
   alteraContexto('foco');
   focoBt.classList.add('active');
   curtoBt.classList.remove('active');
@@ -38,6 +39,7 @@ focoBt.addEventListener('click', () => {
 });
 
 curtoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 300; // 5 minutos
   alteraContexto('descanso-curto');
   focoBt.classList.remove('active');
   curtoBt.classList.add('active');
@@ -45,6 +47,7 @@ curtoBt.addEventListener('click', () => {
 });
 
 longoBt.addEventListener('click', () => {
+  tempoDecorridoEmSegundos = 900; // 15 minutos
   alteraContexto('descanso-longo');
   focoBt.classList.remove('active');
   curtoBt.classList.remove('active');
@@ -53,6 +56,7 @@ longoBt.addEventListener('click', () => {
 //alterando os textos da página e a imagem de acordo com o contexto via função
 
 function alteraContexto(contexto) {
+  atualizarTempoNaTela();
   html.setAttribute('data-contexto', contexto);
   banner.setAttribute('src', `./imagens/${contexto}.png`);
   switch (contexto) {
@@ -107,8 +111,12 @@ function zerar() {
 }
 
 function atualizarTempoNaTela() {
-  const tempo = tempoDecorridoEmSegundos;
-  tempoNaTela.innerHTML = `${tempo}`;
+  const tempo = new Date(tempoDecorridoEmSegundos * 1000);
+  const tempoFormatado = tempo.toLocaleTimeString('pt-BR', {
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  tempoNaTela.innerHTML = `${tempoFormatado}`;
 }
 
 atualizarTempoNaTela();
