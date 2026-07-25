@@ -6,7 +6,7 @@ O projeto foi desenvolvido durante a formação **Carreira Front-end** da Alura 
 
 ## 🔗 Demonstração
 
-https://github.com/DiegoOGoncalves/Projeto-Fokus
+[![GitHub Pages](https://img.shields.io/badge/Demo-GitHub%20Pages-blue?style=for-the-badge)](https://diegoogoncalves.github.io/Projeto-Fokus/)
 
 ## 📸 Preview
 
