@@ -2,7 +2,7 @@
 
 Aplicação web inspirada na técnica Pomodoro para auxiliar na concentração durante os estudos e no trabalho.
 
-O projeto foi desenvolvido durante a formação **Carreira Front-end** da Alura e utiliza **Local Storage** para persistência dos dados.
+O projeto desenvolvido utiliza **Local Storage** para persistência dos dados.
 
 ## 🔗 Demonstração
 
