@@ -1,60 +1,55 @@
-# Fokus ⏱️
+# ⏱️ Fokus
 
-Aplicação inspirada na técnica Pomodoro, desenvolvida para praticar conceitos fundamentais de **JavaScript**, como manipulação do DOM, eventos, alteração dinâmica de elementos e controle de tempo.
+Aplicação web inspirada na técnica Pomodoro para auxiliar na concentração durante os estudos e no trabalho.
 
-## 📖 Sobre o projeto
+O projeto foi desenvolvido durante a formação **Carreira Front-end** da Alura e utiliza **Local Storage** para persistência dos dados.
 
-O Fokus permite alternar entre diferentes modos de trabalho e descanso, ajudando a organizar períodos de concentração e pausas.
+## 🔗 Demonstração
 
-Durante o desenvolvimento foram aplicados conceitos como:
+https://github.com/DiegoOGoncalves/Projeto-Fokus
 
-- Manipulação do DOM
-- Eventos (`addEventListener`)
-- Alteração dinâmica de classes CSS
-- Alteração de imagens e textos conforme o contexto
-- Temporizadores com `setInterval` e `clearInterval`
-- Organização do código em funções
-- Controle de estado da aplicação
+## 📸 Preview
+
+<img width="1618" height="898" alt="image" src="https://github.com/user-attachments/assets/786f201d-1e34-4c41-8866-7e1f60e4209e" />
+
+<img width="1240" height="507" alt="image" src="https://github.com/user-attachments/assets/be41cb15-784b-4786-ab8d-6d3033333560" />
+
+## ✨ Funcionalidades
+
+- Temporizador Pomodoro
+- Modos de foco, descanso curto e descanso longo
+- Sons ambientes
+- Manipulação dinâmica da interface
+- Persistência de dados utilizando Local Storage
+- Interface responsiva
 
 ## 🚀 Tecnologias utilizadas
 
 - HTML5
 - CSS3
 - JavaScript (ES6)
+- Local Storage
 
-## 📸 Preview
+## 📚 Aprendizados
 
-<img width="1470" height="884" alt="image" src="https://github.com/user-attachments/assets/0377d939-20c2-4c26-a52b-569e88c8c4d8" />
+Neste projeto pratiquei:
 
+- Manipulação do DOM
+- Eventos
+- Organização do código JavaScript
+- Objetos e Arrays
+- Armazenamento de dados com Local Storage
 
-## ▶️ Como executar
-
-1. Clone o repositório
+## 💻 Como executar
 
 ```bash
 git clone https://github.com/DiegoOGoncalves/Projeto-Fokus.git
 ```
 
-2. Acesse a pasta
-
-```bash
-cd Projeto-Fokus
-```
-
-3. Abra o arquivo `index.html` no navegador.
-
-## 📚 Aprendizados
-
-Este projeto foi desenvolvido com o objetivo de reforçar conceitos de JavaScript, principalmente:
-
-- Manipulação de elementos HTML
-- Eventos do usuário
-- Alteração dinâmica da interface
-- Organização e reutilização de código
-- Controle de tempo utilizando JavaScript
+Depois, abra o arquivo `index.html` em seu navegador.
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Diego Gonçalves**
+**Diego Gonçalves**
 
-- GitHub: https://github.com/DiegoOGoncalves
+GitHub: https://github.com/DiegoOGoncalves
