@@ -404,6 +404,7 @@ h6 {
   flex-shrink: 0;
   width: 2.4rem;
   height: 2.4rem;
+  cursor: pointer;
 }
 
 .app__section-task-list-item-description {
@@ -485,6 +486,11 @@ h6 {
   font-weight: 600;
   line-height: 150%;
   gap: 0.8rem;
+}
+
+.app__form-footer__button--delete:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .app__form-footer__button--confirm {
