@@ -50,7 +50,7 @@ html {
 
 body {
   min-height: 100vh;
-  background: url('/imagens/pattern.png');
+  background: url('./imagens/pattern.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -364,6 +364,16 @@ h6 {
   align-items: center;
 }
 
+.app_button-more {
+  padding: 0;
+}
+
+.app_button-more img {
+  display: block;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
 .app__section-active-task-label {
   font-family: Montserrat;
   font-size: 1.25rem;
@@ -388,6 +398,12 @@ h6 {
   padding: 1.6rem;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.app__section-task-icon-status {
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .app__section-task-list-item-description {
